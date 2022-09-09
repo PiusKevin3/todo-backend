@@ -17,7 +17,7 @@
 
 ** NB: Make sure you have the front end running
 ** You can access it through this link;
-https://github.com/PiusKevin3/todo-front
+https://github.com/PiusKevin3/todo-frontend
 
 # Happy Coding!
 
