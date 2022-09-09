@@ -7,10 +7,10 @@ const createTodo = async function(req, res){
   try {
             if (!TodoInfo)            
              return res.send({message: 'Please fill todo  form data'});
-                       
+                 
                   Todo.create({
                     task_name:TodoInfo.task_name,            
-                    due_date:TodoInfo.due_date ,
+                    due_time:TodoInfo.due_time ,
                     complete_status: TodoInfo.complete_status,                   
                     })
                       .then((Todo)=>{
@@ -23,7 +23,7 @@ const createTodo = async function(req, res){
           
           
         } catch (error) {
-         // console.log(error)
+
             res.send({message: error.message})
         }
        
@@ -53,6 +53,28 @@ const getTodo = async function(req, res){
 
 }
 module.exports.getTodo = getTodo
+
+const getDoneTodos = async function(req, res){
+ 
+
+    try {
+        await  Todo.findAll({where: {complete_status: true }})
+         .then(resData=>{
+            return res.status(200).send({resData,msg:"Todo search Successfully!"});
+
+         })
+         .catch(err=>{
+            return res.send({message: err.message});
+         })
+        
+    } catch (error) {
+        res.send({message: error.message})
+        
+    }
+
+
+}
+module.exports.getDoneTodos = getDoneTodos
 
 
 const getTodoList = async function(req, res){
